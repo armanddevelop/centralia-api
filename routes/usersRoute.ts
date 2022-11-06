@@ -4,13 +4,20 @@ import {
   getAllUsers,
   getUserById,
 } from "../controllers/users/users-controller";
+
 import { validationHandler } from "../middlewares/validationHandler";
 import { validateJWT } from "../middlewares/validateJWT";
 import { userSchema, userIdSchema } from "../schemas/userSchema";
+import { upload } from "../middlewares/uploadFiles";
 
 const routerUser = express.Router();
 
-routerUser.post("/", validationHandler(userSchema, "body"), createUser);
+routerUser.post(
+  "/",
+  upload.single("avatar"),
+  validationHandler(userSchema, "body"),
+  createUser
+);
 
 routerUser.get("/", validateJWT, getAllUsers);
 

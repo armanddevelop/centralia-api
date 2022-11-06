@@ -10,8 +10,7 @@ import {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const body = req.body;
-    const response: ICommonResponse | any = await createUserStore(body);
+    const response: ICommonResponse | any = await createUserStore(req);
     if (response.code === 2) {
       responseError(res, response, boom.serverUnavailable());
     } else if (typeof response === "object") {

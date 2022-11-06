@@ -24,6 +24,6 @@ export const userSchema = Joi.object({
   rol: rol.required(),
   password: password.required(),
   telefono_personal: telefono_personal.required(),
-  avatar: avatar.required(),
+  avatar: avatar,
   negocio_id: negocio_id,
 });
