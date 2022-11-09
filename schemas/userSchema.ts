@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const avatar = Joi.string().allow("");
+const avatar = Joi.any().allow("");
 const password = Joi.string().min(8).max(12).alphanum();
 const apellido = Joi.string();
 const nombre = Joi.string();

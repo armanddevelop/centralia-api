@@ -8,13 +8,13 @@ import {
 import { validationHandler } from "../middlewares/validationHandler";
 import { validateJWT } from "../middlewares/validateJWT";
 import { userSchema, userIdSchema } from "../schemas/userSchema";
-import { upload } from "../middlewares/uploadFiles";
+import { uploadFilesMiddleware } from "../middlewares/uploadFiles";
 
 const routerUser = express.Router();
 
 routerUser.post(
   "/",
-  upload.single("avatar"),
+  uploadFilesMiddleware,
   validationHandler(userSchema, "body"),
   createUser
 );

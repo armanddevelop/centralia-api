@@ -5,7 +5,6 @@ export const buildPath = (nameFolder: string, data: any, file: any) => {
   let avatarImgPath: string = "";
   if (file) {
     const { filename, destination } = file;
-    console.log("esto vale file", file);
     avatarImgPath = `${serverHost}/${destination}/${filename}`;
     data.avatar = avatarImgPath;
   } else {
