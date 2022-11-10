@@ -4,7 +4,7 @@ import { ICommonResponse } from "../../interfaces/common-interface";
 import { IUser } from "../../interfaces/user-interface";
 import { models } from "../../models/user-model";
 import { buildFields } from "../../helpers/buildFields";
-import { buildPath } from "../../helpers/buildPath";
+import { buildSinglePath } from "../../helpers/buildPath";
 
 export const createUserStore = async (req: { [index: string]: any }) => {
   try {
@@ -17,10 +17,9 @@ export const createUserStore = async (req: { [index: string]: any }) => {
     };
     const isUniqueEmail = await User.findOne({ email });
     if (!isUniqueEmail) {
-      const nameFolder = "avatars";
       const encryptData = encryptPassword(body);
       if (!encryptData?.negocio_id) encryptData.negocio_id = null;
-      const dataToSave = buildPath(nameFolder, encryptData, file);
+      const dataToSave = buildSinglePath(body, file);
       const user = new User<IUser>(dataToSave);
       const responseDB = await user.save();
       if (responseDB) {

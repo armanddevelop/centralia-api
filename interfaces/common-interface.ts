@@ -1,5 +1,4 @@
 import { Types } from "mongoose";
-import { Request } from "express";
 
 export type ICommonResponse = {
   code: number;
@@ -19,4 +18,22 @@ export type JwtPayload = {
   usuarioRol: number;
   fechaExpiracion: number;
   emitido: number;
+};
+
+export type file = {
+  name: string;
+  maxCount: number;
+};
+
+export type files = Array<file>;
+
+export type filesData = {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  destination: string;
+  filename: string;
+  path: string;
+  size: number;
 };

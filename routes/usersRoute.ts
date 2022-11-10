@@ -14,7 +14,7 @@ const routerUser = express.Router();
 
 routerUser.post(
   "/",
-  uploadFilesMiddleware,
+  uploadFilesMiddleware("createUser"),
   validationHandler(userSchema, "body"),
   createUser
 );

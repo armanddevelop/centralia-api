@@ -10,7 +10,7 @@ import { uploadFilesMiddleware } from "../middlewares/uploadFiles";
 const routerBusiness = express.Router();
 routerBusiness.post(
   "/",
-  uploadFilesMiddleware,
+  uploadFilesMiddleware("createBusiness"),
   validationHandler(businessSchema, "body"),
   createBusiness
 );
