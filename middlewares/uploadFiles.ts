@@ -35,7 +35,7 @@ const storageConfiguration = multer.diskStorage({
         }
         if (fieldname === "logo" || fieldname === "fachada") {
             const { nombre } = req.body;
-            const nameFolder = nombre.replace(/ /g, "_");
+            const nameFolder = nombre.toLowerCase().replace(/ /g, "_");
             const validation = validationFields(businessSchema, req["body"]);
             const path: string = `${folder}/${fieldname}s/${nameFolder}`;
             if (!validation) {
@@ -65,7 +65,9 @@ export const uploadFilesMiddleware = (routeName: string) => {
     return (req: Request, res: Response, next: NextFunction) => {
         let upload: any;
         if (routeName === "createBusiness") {
-            upload = multer({ storage: storageConfiguration }).fields(filesFields);
+            upload = multer({ storage: storageConfiguration }).fields(
+                filesFields
+            );
         } else if (routeName === "createUser") {
             upload = multer({ storage: storageConfiguration }).single("avatar");
         }
