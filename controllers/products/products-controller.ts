@@ -2,7 +2,7 @@ import boom from "@hapi/boom";
 import { Request, Response } from "express";
 import { responseError, responseSuccess } from "../../helpers/responseManager";
 import { ICommonResponse } from "../../interfaces/common-interface";
-import { getProductsByBusinessIdStore } from "./products-store";
+import { getProductByIdStore } from "./products-store";
 
 export const createBusiness = async (req: Request, res: Response) => {
     try {
@@ -44,10 +44,9 @@ export const getAllBusiness = async (req: Request, res: Response) => {
     }
 };
 
-export const getProductsByBusinessId = async (req: Request, res: Response) => {
+export const getProductById = async (req: Request, res: Response) => {
     try {
-        const response: ICommonResponse | any =
-            await getProductsByBusinessIdStore(req);
+        const response: ICommonResponse | any = await getProductByIdStore(req);
         if (response.code === 2) {
             responseError(res, response, boom.internal());
         } else if (typeof response === "object") {

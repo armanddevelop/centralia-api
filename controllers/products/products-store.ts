@@ -58,7 +58,7 @@ export const getAllBusinessStore = async () => {
     }
 };
 
-export const getProductsByBusinessIdStore = async (request: any) => {
+export const getProductByIdStore = async (request: any) => {
     try {
         const { Product } = models;
         const { id } = request.params;
@@ -67,7 +67,7 @@ export const getProductsByBusinessIdStore = async (request: any) => {
             mainField: "categoria_id",
             id,
         };
-        const responseDB = await Product.findById({ _id: id });
+        const responseDB = await querys(Product, configFieldOptions);
         let response: ICommonResponse | undefined;
         if (responseDB) {
             return (response = {
@@ -82,10 +82,10 @@ export const getProductsByBusinessIdStore = async (request: any) => {
             });
         }
     } catch (error: any) {
-        console.error("[getProductsByBusinessIdStoreFail]: ", error.message);
+        console.error("[getProductByIdStoreFail]: ", error.message);
         const response = {
             code: 2,
-            message: "Algo salio mal al obtener el negocio por id",
+            message: "Algo salio mal al obtener el producto por id",
         };
 
         return response;

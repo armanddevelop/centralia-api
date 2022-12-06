@@ -3,6 +3,7 @@ import {
     IProduct,
     IProductImg,
     IProductTag,
+    IProductCategory,
 } from "../interfaces/product-interface";
 
 const ImagenSchema = new Schema<IProductImg>({
@@ -25,6 +26,9 @@ const productSchema = new Schema<IProduct>({
     imagenes: [ImagenSchema],
     etiquetas: [EtiquetaSchema],
 });
+const productSchemaCategories = new Schema<IProductCategory>({
+    nombre: { type: String, requiered: true },
+});
 
 productSchema.set("toJSON", {
     virtuals: true,
@@ -35,5 +39,17 @@ productSchema.set("toJSON", {
     },
 });
 
+productSchemaCategories.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id;
+    },
+});
+
 const Product = model<IProduct>("Product", productSchema);
-export const models = { Product };
+const ProductCategories = model<IProductCategory>(
+    "ProductCategories",
+    productSchemaCategories
+);
+export const models = { Product, ProductCategories };

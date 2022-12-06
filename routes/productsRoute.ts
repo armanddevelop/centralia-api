@@ -1,5 +1,5 @@
 import express from "express";
-import { getProductsByBusinessId } from "../controllers/products/products-controller";
+import { getProductById } from "../controllers/products/products-controller";
 import { validateJWT } from "../middlewares/validateJWT";
 import { validationHandler } from "../middlewares/validationHandler";
 import { productSchema } from "../schemas/productSchema";
@@ -10,7 +10,7 @@ routerProduct.get(
     "/:id",
     validateJWT,
     validationHandler(productSchema, "params"),
-    getProductsByBusinessId
+    getProductById
 );
 
 export default routerProduct;
