@@ -10,7 +10,7 @@ export interface IUser {
     negocio_id?: Schema.Types.ObjectId | null;
 }
 
-enum rolUser {
+export enum rolUser {
     Admin = 0,
     Proveedor = 1,
     Negocio = 2,

@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
 import { argumenstJWT } from "../interfaces/common-interface";
+import { jwtPayloadDto } from "../interfaces/common.DTO";
 
 export const generateJWT = async ({
     uid,
     nombre,
     usuarioRol,
 }: argumenstJWT) => {
-    const payload = { uid, nombre, usuarioRol };
+    const payload: jwtPayloadDto = { uid, nombre, usuarioRol };
     try {
         return await new Promise<string>((resolve, reject) => {
             jwt.sign(

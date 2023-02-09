@@ -6,14 +6,14 @@ import boom from "@hapi/boom";
 import { v4 as uuidv4 } from "uuid";
 import { Request, Response, NextFunction } from "express";
 import { businessSchema } from "../schemas/businessSchema";
-import { files } from "../interfaces/common-interface";
+import { file } from "../interfaces/common-interface";
 
 const validationFields = (schema: Joi.ObjectSchema<any>, body: any) => {
     const data = body;
     const { error } = schema.validate(data, { abortEarly: false });
     return error;
 };
-const filesFields: files = [
+const filesFields: file[] = [
     { name: "logo", maxCount: 1 },
     { name: "fachada", maxCount: 1 },
 ];

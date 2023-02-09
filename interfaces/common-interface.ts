@@ -1,33 +1,23 @@
 import { Types } from "mongoose";
 
-export type ICommonResponse = {
+export interface ICommonResponse {
     code: number;
     message: string;
     data?: any;
-};
+}
 
-export type argumenstJWT = {
+export interface argumenstJWT {
     nombre: string;
     uid: Types.ObjectId;
     usuarioRol: number | undefined;
-};
+}
 
-export type JwtPayload = {
-    uid: string;
-    nombre: string;
-    usuarioRol: number;
-    fechaExpiracion: number;
-    emitido: number;
-};
-
-export type file = {
+export interface file {
     name: string;
     maxCount: number;
-};
+}
 
-export type files = Array<file>;
-
-export type filesData = {
+export interface filesData {
     fieldname: string;
     originalname: string;
     encoding: string;
@@ -36,12 +26,12 @@ export type filesData = {
     filename: string;
     path: string;
     size: number;
-};
+}
 
-export type imagesBusiness = {
+export interface imagesBusiness {
     logo: string;
     fachada: string;
-};
+}
 
 export interface ICongifOptions {
     mainField: string;
