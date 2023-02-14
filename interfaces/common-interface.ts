@@ -31,6 +31,7 @@ export interface filesData {
 export interface imagesBusiness {
     logo: string;
     fachada: string;
+    avatar: string;
 }
 
 export interface ICongifOptions {

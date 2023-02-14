@@ -1,4 +1,6 @@
+import fs from "fs";
 import boom from "@hapi/boom";
+import excelToJson from "convert-excel-to-json";
 import { Request, Response } from "express";
 import { responseError, responseSuccess } from "../../helpers/responseManager";
 import { ICommonResponse } from "../../interfaces/common-interface";
@@ -62,4 +64,10 @@ export const getProductById = async (req: Request, res: Response) => {
         };
         return response;
     }
+};
+
+export const uploadFile = async (req: Request, res: Response) => {
+    try {
+        const { body, files } = req;
+    } catch (error) {}
 };

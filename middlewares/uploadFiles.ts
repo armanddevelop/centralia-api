@@ -13,10 +13,6 @@ const validationFields = (schema: Joi.ObjectSchema<any>, body: any) => {
     const { error } = schema.validate(data, { abortEarly: false });
     return error;
 };
-const filesFields: file[] = [
-    { name: "logo", maxCount: 1 },
-    { name: "fachada", maxCount: 1 },
-];
 //setting options for multer
 const storageConfiguration = multer.diskStorage({
     destination: (req: Request, file, cb) => {
@@ -53,6 +49,20 @@ const storageConfiguration = multer.diskStorage({
                 cb(error, validation.details[0].message);
             }
         }
+        if (fieldname === "productos") {
+            if (fieldname) {
+                const folder: string = "tmp";
+                const path: string = `${folder}/${fieldname}`;
+                try {
+                    if (!fs.existsSync(path)) {
+                        fs.mkdirSync(path);
+                    }
+                    cb(null, path);
+                } catch (error) {
+                    console.error("[errorMulterCreateFolder]: ", error);
+                }
+            }
+        }
     },
     filename: (req: Request, file, cb) => {
         const extension = path.extname(file.originalname);
@@ -61,16 +71,11 @@ const storageConfiguration = multer.diskStorage({
     },
 });
 
-export const uploadFilesMiddleware = (routeName: string) => {
+export const uploadFilesMiddleware = (options: file[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
-        let upload: any;
-        if (routeName === "createBusiness") {
-            upload = multer({ storage: storageConfiguration }).fields(
-                filesFields
-            );
-        } else if (routeName === "createUser") {
-            upload = multer({ storage: storageConfiguration }).single("avatar");
-        }
+        const upload = multer({ storage: storageConfiguration }).fields(
+            options
+        );
         upload(req, res, (error: any) => {
             if (error instanceof multer.MulterError) {
                 next(boom.badImplementation());

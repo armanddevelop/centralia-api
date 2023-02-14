@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/boom": "^10.0.0",
+    "@types/convert-excel-to-json": "^1.7.1",
     "bcryptjs": "^2.4.3",
+    "convert-excel-to-json": "^1.7.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "eclint": "^2.8.1",
