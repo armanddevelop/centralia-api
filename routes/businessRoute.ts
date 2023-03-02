@@ -8,11 +8,16 @@ import { validationHandler } from "../middlewares/validationHandler";
 import { businessSchema, negocioIdSchema } from "../schemas/businessSchema";
 import { uploadFilesMiddleware } from "../middlewares/uploadFiles";
 import { validateJWT } from "../middlewares/validateJWT";
+import { file } from "../interfaces/common-interface";
 
 const routerBusiness = express.Router();
+const filesFields: file[] = [
+    { name: "logo", maxCount: 1 },
+    { name: "fachada", maxCount: 1 },
+];
 routerBusiness.post(
     "/",
-    uploadFilesMiddleware("createBusiness"),
+    uploadFilesMiddleware(filesFields),
     validationHandler(businessSchema, "body"),
     createBusiness
 );

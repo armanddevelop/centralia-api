@@ -1,19 +1,23 @@
-import { filesData, imagesBusiness } from "../interfaces/common-interface";
+import { filesData } from "../interfaces/common-interface";
+import { pathsDto } from "../interfaces/common.DTO";
 
 export const buildSinglePath = (data: any, file: any) => {
-    let avatarImgPath: string = "";
-    if (file) {
-        const { filename, destination } = file;
-        avatarImgPath = `/${destination}/${filename}`;
-        data.avatar = avatarImgPath;
+    let path: pathsDto = { avatar: "" };
+    if (Object.keys(file).length > 0) {
+        for (const key in file) {
+            path[
+                key as keyof typeof path
+            ] = `/${file[key][0].destination}/${file[key][0].filename}`;
+            data[key] = path[key as keyof typeof path];
+        }
     } else {
-        data.avatar = avatarImgPath;
+        data.avatar = path.avatar;
     }
     return data;
 };
 
 export const buildMultiplePaths = (body: any, files: any) => {
-    let dataWithPaths: imagesBusiness = { logo: "", fachada: "" };
+    let dataWithPaths: pathsDto = { logo: "", fachada: "" };
     if (Object.keys(files).length > 0) {
         for (const key in files) {
             const values = files[key];

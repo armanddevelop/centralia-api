@@ -13,7 +13,7 @@ import { querys } from "../../helpers/querySearch";
 export const createUserStore = async (req: { [index: string]: any }) => {
     try {
         const { User } = models;
-        const { body, file } = req;
+        const { body, files } = req;
         const { email } = body;
         let response: ICommonResponse = {
             code: 0,
@@ -23,7 +23,7 @@ export const createUserStore = async (req: { [index: string]: any }) => {
         if (!isUniqueEmail) {
             const encryptData = encryptPassword(body);
             if (!encryptData?.negocio_id) encryptData.negocio_id = null;
-            const dataToSave = buildSinglePath(body, file);
+            const dataToSave = buildSinglePath(body, files);
             const user = new User<IUser>(dataToSave);
             const responseDB = await user.save();
             if (responseDB) {

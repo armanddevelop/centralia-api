@@ -7,11 +7,11 @@ export const querys = (modelName: Model<any>, options: ICongifOptions) => {
         const populateOptions: any = !subField
             ? mainField
             : {
-                path: mainField,
-                populate: {
-                    path: subField || "",
-                },
-            };
+                  path: mainField,
+                  populate: {
+                      path: subField || "",
+                  },
+              };
         if (method === "getAll") {
             modelName
                 .find()

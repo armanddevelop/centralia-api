@@ -1,12 +1,4 @@
-import { Types } from "mongoose";
-
-export type argumenstJWT = {
-    nombre: string;
-    uid: Types.ObjectId;
-    rol: string;
-};
-
-export const fieldsToRetrive: Array<string> = [
+export const fieldsToRetrive: string[] = [
     "nombre",
     "apellido",
     "email",

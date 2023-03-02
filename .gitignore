@@ -79,6 +79,8 @@ $RECYCLE.BIN/
 node_modules/
 #dist
 dist/
+#tmp
+tmp/
 #imgs
 avatars/
 fachadas/

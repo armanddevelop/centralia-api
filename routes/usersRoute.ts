@@ -9,12 +9,13 @@ import { validationHandler } from "../middlewares/validationHandler";
 import { validateJWT } from "../middlewares/validateJWT";
 import { userSchema, userIdSchema } from "../schemas/userSchema";
 import { uploadFilesMiddleware } from "../middlewares/uploadFiles";
+import { file } from "../interfaces/common-interface";
 
 const routerUser = express.Router();
-
+const filesFields: file[] = [{ name: "avatar", maxCount: 1 }];
 routerUser.post(
     "/",
-    uploadFilesMiddleware("createUser"),
+    uploadFilesMiddleware(filesFields),
     validationHandler(userSchema, "body"),
     createUser
 );
