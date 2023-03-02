@@ -7,18 +7,24 @@ import { authStore } from "./auth-store";
 export const auth = async (req: Request, res: Response) => {
     try {
         const response: ICommonResponse | any = await authStore(req.body);
-        if (response.code === 2) {
-            responseError(res, response, boom.internal());
-        } else if (typeof response === "object") {
-            (response?.data && typeof response?.data.token)
+        switch (response.code) {
+            case 0: // Authorization success
+                response?.data && response?.data.token
                 ? responseSuccess(res, response, 200)
-                : responseError(res, response, boom.badRequest());
+                : responseError(res, response, boom.forbidden());
+                break;
+            case 1: // Invalid user/pass
+                responseSuccess(res, response, 200);
+                break;
+            default: // Error
+                responseError(res, response, boom.internal());
+                break;
         }
     } catch (error) {
         console.error("[loginUserError]: ", error);
         const response = {
-            code: 1,
-            message: 'Hay un error inesperado, intenta de nuevo mas tarde'
+            code: 2,
+            message: "Hay un error inesperado, intenta de nuevo mas tarde",
         };
         return response;
     }

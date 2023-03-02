@@ -7,7 +7,7 @@ export const responseSuccess = (
     code: any
 ) => {
     resp.status(code).json({
-        codigo: 0,
+        codigo: response.code,
         mesaje: response.message,
         data: response.data,
     });
