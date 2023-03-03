@@ -2,7 +2,7 @@ import Joi from "joi";
 
 const negocio_id = Joi.string().not().allow("", "undefined");
 const etiquetas = Joi.object().keys({
-    etiqueta: Joi.string().allow("").empty(),
+    nombre: Joi.string().allow("").empty(),
 });
 const imagenes = Joi.object().keys({
     url: Joi.string().allow(""),

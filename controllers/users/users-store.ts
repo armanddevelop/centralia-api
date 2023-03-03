@@ -23,7 +23,7 @@ export const createUserStore = async (req: { [index: string]: any }) => {
         if (!isUniqueEmail) {
             const encryptData = encryptPassword(body);
             if (!encryptData?.negocio_id) encryptData.negocio_id = null;
-            const dataToSave = buildSinglePath(body, files);
+            const dataToSave: any = buildSinglePath(body, files);
             const user = new User<IUser>(dataToSave);
             const responseDB = await user.save();
             if (responseDB) {

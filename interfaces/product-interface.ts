@@ -1,12 +1,15 @@
 import { Schema } from "mongoose";
 
 export interface IProduct {
-    descripcion: string;
     categoria_id: Schema.Types.ObjectId;
+    producto_id: Schema.Types.ObjectId;
+    img: string;
+    precio: number;
     codigo?: string | null;
     sku?: string | null;
     imagenes: IProductImg[];
     etiquetas: IProductTag[];
+    descripcion: string;
 }
 
 export interface IProductImg {
@@ -20,4 +23,8 @@ export interface IProductTag {
 
 export interface IProductCategory {
     nombre: string;
+}
+export interface IProducts {
+    negocio_id: Schema.Types.ObjectId;
+    productos: IProduct[];
 }

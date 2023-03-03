@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import { responseError, responseSuccess } from "../../helpers/responseManager";
 import { ICommonResponse } from "../../interfaces/common-interface";
 import { getMenu } from "./menu-store";
-import { IUser } from "../../interfaces/user-interface";
 
 export const getMenuItems = async (req: Request, res: Response) => {
     try {
@@ -24,4 +23,3 @@ export const getMenuItems = async (req: Request, res: Response) => {
         return response;
     }
 };
-
