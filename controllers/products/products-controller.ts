@@ -4,13 +4,20 @@ import excelToJson from "convert-excel-to-json";
 import { Request, Response } from "express";
 import { responseError, responseSuccess } from "../../helpers/responseManager";
 import { ICommonResponse } from "../../interfaces/common-interface";
-import { getProductByIdStore } from "./products-store";
+import { getProductByIdStore, createProductStore } from "./products-store";
 
-export const createSingeProduct = async (req: Request, res: Response) => {
+export const createProduct = async (req: Request, res: Response) => {
     try {
-        const { body } = req;
+        const response: ICommonResponse | any = await createProductStore(req);
+        if (response.code === 2) {
+            responseError(res, response, boom.internal());
+        } else if (typeof response === "object") {
+            response.code === 0
+                ? responseSuccess(res, response, 200)
+                : responseError(res, response, boom.badRequest());
+        }
     } catch (error) {
-        console.error("[createBusinessError]: ", error);
+        console.error("[createProductError]: ", error);
         const response = {
             code: 1,
             message: "Hay un error inesperado, intenta de nuevo mas tarde",

@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    createSingeProduct,
+    createProduct,
     getProductById,
     uploadFile,
 } from "../controllers/products/products-controller";
@@ -28,6 +28,6 @@ routerProduct.post(
     "/crear-producto",
     validateJWT,
     validationHandler(productSchema, "body"),
-    createSingeProduct
+    createProduct
 );
 export default routerProduct;
