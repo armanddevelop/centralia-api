@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
+import { IBaseInterface } from "./common-interface";
 
-export interface IBusiness {
-    nombre: string;
+export interface IBusiness extends IBaseInterface {
     categoria_id: Schema.Types.ObjectId | null;
     direccion: string;
     logo?: string;
@@ -11,6 +11,4 @@ export interface IBusiness {
     calificacion?: number | null;
 }
 
-export interface IBusinessCategories {
-    nombre: string;
-}
+export interface IBusinessCategories extends IBaseInterface {}

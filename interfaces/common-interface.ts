@@ -1,13 +1,16 @@
 import { Types } from "mongoose";
 
+export interface IBaseInterface {
+    nombre: string;
+}
+
 export interface ICommonResponse {
     code: number;
     message: string;
     data?: any;
 }
 
-export interface argumenstJWT {
-    nombre: string;
+export interface argumenstJWT extends IBaseInterface {
     uid: Types.ObjectId;
     usuarioRol: number | undefined;
 }
@@ -39,5 +42,5 @@ export interface ICongifOptions {
     method: string;
     subField?: string;
     id?: string;
-    retrieveFields?: Array<string>;
+    retrieveFields?: ReadonlyArray<string>;
 }

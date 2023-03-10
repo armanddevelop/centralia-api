@@ -1,4 +1,7 @@
-export const buildFields = (fields: Array<string>, fieldName: string = "") => {
+export const buildFields = (
+    fields: ReadonlyArray<string>,
+    fieldName: string = ""
+) => {
     if (fieldName === "") {
         return fields;
     }

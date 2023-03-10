@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
-export interface IUser {
+import { IBaseInterface } from "./common-interface";
+export interface IUser extends IBaseInterface {
     avatar: string;
-    nombre: string;
     apellido: string;
     rol?: rolUser;
     email: string;

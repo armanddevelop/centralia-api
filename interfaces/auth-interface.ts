@@ -1,4 +1,4 @@
-export const fieldsToRetrive: string[] = [
+export const fieldsToRetrive: ReadonlyArray<string> = [
     "nombre",
     "apellido",
     "email",

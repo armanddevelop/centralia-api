@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+import { IBaseInterface } from "./common-interface";
 
 export interface IProduct {
     categoria_id: Schema.Types.ObjectId;
@@ -17,13 +18,10 @@ export interface IProductImg {
     public: boolean;
 }
 
-export interface IProductTag {
-    nombre: string;
-}
+export interface IProductTag extends IBaseInterface {}
 
-export interface IProductCategory {
-    nombre: string;
-}
+export interface IProductCategory extends IBaseInterface {}
+
 export interface IProducts {
     negocio_id: Schema.Types.ObjectId;
     productos: IProduct[];
